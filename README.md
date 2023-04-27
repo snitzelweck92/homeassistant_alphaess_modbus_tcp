@@ -52,9 +52,9 @@ https://www.alpha-ess.de/images/downloads/handbuecher/AlphaESS-Handbuch_SMILE_Mo
 - List of Modbus-Registers:\
 https://www.alpha-ess.de/images/downloads/handbuecher/AlphaESS_Register_Parameter_List.pdf (german)
 
-## WARNINGS:
-- Everything what is provided here is without a guarantee!
-- No support is promised by my side, i will help you, if i can!
-- Please be patient with writing registers, it can destroy your system!
-- Note, that only the Smile-Hi10-System is tested!
-- When there is a damage on your system, or you are loosing your guarantee, this is your problem. You are using this helper on your own risk!
+## WARNINGS
+- **Everything what is provided here is without a guarantee!**
+- **No support is promised by my side, i will help you, if i can!**
+- **Please be patient with writing registers, it can destroy your system!**
+- **Note, that only the Smile-Hi10-System is tested!**
+- **When there is a damage on your system, or you are loosing your guarantee, this is your problem. You are using this helper on your own risk!**
