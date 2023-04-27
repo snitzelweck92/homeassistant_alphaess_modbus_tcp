@@ -1,0 +1,273 @@
+#modbus sensor configuration
+modbus:
+  - name: modbuspvsystem
+    type: tcp
+    host: !secret alphaess_modbus_host_ip
+    port: !secret alphaess_modbus_host_port
+    message_wait_milliseconds: 5 # waittime between 2 messages
+    timeout: 10 # timeout in seconds before connection is closed
+    retry_on_empty: true
+    delay: 1 # delay in seconds at startup
+
+    #definition of sensors
+    sensors:
+      #Measurements current power
+      # Power to/from GRID
+      - name: Alpha ESS Total Power Grid
+        unique_id: PV_TotalPower_Grid
+        slave: !secret alphaess_modbus_slaveId
+        address: 33
+        input_type: holding
+        count: 2
+        data_type: int32
+        unit_of_measurement: W
+        device_class: power
+        state_class: measurement
+        scan_interval: 10
+        scale: 1
+        precision: 2
+
+      # Power to/from Battery
+      - name: Alpha ESS Total Power Battery
+        unique_id: PV_TotalPower_Battery
+        slave: !secret alphaess_modbus_slaveId
+        address: 294
+        input_type: holding
+        count: 1
+        data_type: int16
+        unit_of_measurement: W
+        device_class: power
+        state_class: measurement
+        scan_interval: 10
+        scale: 1
+        precision: 2
+
+      # Power Inverter
+      - name: Alpha ESS Total Power Inverter
+        unique_id: PV_TotalPower_Inverter
+        slave: !secret alphaess_modbus_slaveId
+        address: 1036
+        input_type: holding
+        count: 2
+        data_type: int32
+        unit_of_measurement: W
+        device_class: power
+        state_class: measurement
+        scan_interval: 10
+        scale: 1
+        precision: 2
+      # Power of String 1 (connector PV1 on the inverter)
+      - name: Alpha ESS Total Power String 1
+        unique_id: alpha_ess_total_power_string_1
+        slave: !secret alphaess_modbus_slaveId
+        address: 1055
+        input_type: holding
+        count: 2
+        data_type: uint32
+        unit_of_measurement: "W"
+        device_class: power
+        state_class: measurement
+        scan_interval: 5
+        scale: 1
+        precision: 2
+      # Power of String 2 (connector PV3 on the inverter)
+      - name: Alpha ESS Total Power String 2
+        unique_id: alpha_ess_total_power_string_2
+        slave: !secret alphaess_modbus_slaveId
+        address: 1059
+        input_type: holding
+        count: 2
+        data_type: uint32
+        unit_of_measurement: "W"
+        device_class: power
+        state_class: measurement
+        scan_interval: 5
+        scale: 1
+        precision: 2
+      # Power of String 3 (connector PV2 on the inverter)
+      - name: Alpha ESS Total Power String 3
+        unique_id: alpha_ess_total_power_string_3
+        slave: !secret alphaess_modbus_slaveId
+        address: 1063
+        input_type: holding
+        count: 2
+        data_type: uint32
+        unit_of_measurement: "W"
+        device_class: power
+        state_class: measurement
+        scan_interval: 5
+        scale: 1
+        precision: 2
+      # Power of String 4 (connector PV4 on the inverter)
+      - name: Alpha ESS Total Power String 4
+        unique_id: alpha_ess_total_power_string_4
+        slave: !secret alphaess_modbus_slaveId
+        address: 1067
+        input_type: holding
+        count: 2
+        data_type: uint32
+        unit_of_measurement: "W"
+        device_class: power
+        state_class: measurement
+        scan_interval: 5
+        scale: 1
+        precision: 2
+
+      #ENERGY MEASUREMENTS STATISTIC
+      # Total Energy Feed to Grid
+      - name: Alpha ESS Total Energy Feed to Grid
+        unique_id: PV_TotalEnergyFeed_Grid
+        slave: !secret alphaess_modbus_slaveId
+        address: 16
+        input_type: holding
+        count: 2
+        data_type: uint32
+        unit_of_measurement: kWh
+        device_class: energy
+        state_class: total_increasing
+        scan_interval: 60
+        scale: 0.01
+        precision: 2
+
+      # Total Energy Consume from Grid
+      - name: Alpha ESS Total Energy Consumption from Grid
+        unique_id: PV_TotalEnergyConsume_Grid
+        slave: !secret alphaess_modbus_slaveId
+        address: 18
+        input_type: holding
+        count: 2
+        data_type: uint32
+        unit_of_measurement: kWh
+        device_class: energy
+        state_class: total_increasing
+        scan_interval: 60
+        scale: 0.01
+        precision: 2
+      # Total Energy Charge Batteryy
+      - name: Alpha ESS Total Energy Charge Battery
+        unique_id: PV_TotalEnergyCharge_Battery
+        slave: !secret alphaess_modbus_slaveId
+        address: 288
+        input_type: holding
+        count: 2
+        data_type: uint32
+        unit_of_measurement: kWh
+        device_class: energy
+        state_class: total_increasing
+        scan_interval: 60
+        scale: 0.1
+        precision: 2
+      # Total Energy Discharge Battery
+      - name: Alpha ESS Total Energy Discharge Battery
+        unique_id: PV_TotalEnergyDischarge_Battery
+        slave: !secret alphaess_modbus_slaveId
+        address: 290
+        input_type: holding
+        count: 2
+        data_type: uint32
+        unit_of_measurement: kWh
+        device_class: energy
+        state_class: total_increasing
+        scan_interval: 60
+        scale: 0.1
+        precision: 2
+      # Total Energy Charge Battery from Grid
+      - name: Total Energy Charge Battery from Grid
+        unique_id: PV_TotalEnergyChargeFromGrid_Battery
+        slave: !secret alphaess_modbus_slaveId
+        address: 292
+        input_type: holding
+        count: 2
+        data_type: uint32
+        unit_of_measurement: kWh
+        device_class: energy
+        state_class: total_increasing
+        scan_interval: 60
+        scale: 0.1
+        precision: 2
+      # Total Energy From PV
+      - name: Alpha ESS Total Energy from PV
+        unique_id: PV_TotalEnergyFromPV_PV
+        slave: !secret alphaess_modbus_slaveId
+        address: 1086
+        input_type: holding
+        count: 2
+        data_type: uint32
+        unit_of_measurement: kWh
+        device_class: energy
+        state_class: total_increasing
+        scan_interval: 60
+        scale: 0.1
+        precision: 2
+
+      # BATTERY
+      #SOC
+      - name: Alpha ESS SOC Battery
+        unique_id: PV_SOC_Battery
+        slave: !secret alphaess_modbus_slaveId
+        address: 258
+        input_type: holding
+        count: 1
+        data_type: int16
+        unit_of_measurement: "%"
+        device_class: battery
+        state_class: measurement
+        scan_interval: 10
+        scale: 0.1
+        precision: 2
+
+      # PV Settings
+      # feedrate into the grid (percentage of the installed PV-Power)
+      - name: Alpha ESS Max Feed to Grid
+        unique_id: PV_MaxFeedIntoGrid
+        slave: !secret alphaess_modbus_slaveId
+        address: 2048
+        input_type: holding
+        count: 1
+        data_type: uint16
+        unit_of_measurement: "%"
+        state_class: measurement
+        scan_interval: 60
+        scale: 1
+        precision: 2
+
+#Helper for setting the MaxFeedToGrid
+input_number:
+  alpha_ess_helper_feedtogrid_value:
+    name: "Setting Max Feed to Grid"
+    min: 0
+    max: 100
+    icon: mdi:cloud_percent
+    unit_of_measurement: "%"
+    mode: slider
+    step: 1.0
+#Automations
+automation:
+  - id: "Alpha_ESS_Setting_FeedToGrid"
+    alias: PV_Set_FeedToGrid_Value
+    description: "With slide the MaxFeedToGrid rate is set and send to System via modbus"
+    trigger:
+      - platform: state
+        entity_id:
+          - input_number.alpha_ess_helper_feedtogrid_value
+    condition: []
+    action:
+      - service: modbus.write_register
+        data:
+          hub: modbuspvsystem
+          address: 2048
+          slave: 85
+          value: "{{ (states('input_number.alpha_ess_helper_feedtogrid_value') | int)}}"
+    mode: single
+
+#Sensor templates
+template:
+  - sensor:
+      #Total consumption of the home
+      - name: alpha_ess_totalenergyconsume_home
+        unit_of_measurement: "kWh"
+        state: "{{ states('sensor.pv_totalenergyfrompv_pv') |float + states('sensor.pv_totalenergyconsume_grid') | float - states('sensor.pv_totalenergyfeed_grid') | float }}"
+      #Total current production
+      - name: alpha_ess_actual_production
+        unit_of_measurement: "W"
+        state: "{{ (states('sensor.alpha_ess_total_power_string_1') | int + states('sensor.alpha_ess_total_power_string_2') | int + states('sensor.alpha_ess_total_power_string_3') | int + states('sensor.alpha_ess_total_power_string_4') | int) |int }}"
