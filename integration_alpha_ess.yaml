@@ -18,7 +18,7 @@ modbus:
         slave: !secret alphaess_modbus_slaveId
         address: 1052
         input_type: holding
-        count: 2
+        count: 1
         data_type: int16
         unit_of_measurement: "Hz"
         #device_class: power
