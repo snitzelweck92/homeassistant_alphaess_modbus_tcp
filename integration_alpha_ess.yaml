@@ -11,7 +11,6 @@ modbus:
 
     #definition of sensors
     sensors:
-    
       #Measurements other
       - name: Alpha ESS Grid Frequency
         unique_id: PV_Grid_Frequency
@@ -21,10 +20,79 @@ modbus:
         count: 1
         data_type: int16
         unit_of_measurement: "Hz"
-        #device_class: power
+        device_class: frequency
         state_class: measurement
-        scan_interval: 10
+        scan_interval: 30
         scale: 0.01
+        precision: 2
+
+      - name: Alpha ESS Max cell temperature
+        unique_id: PV_Max_cell_temperature
+        slave: !secret alphaess_modbus_slaveId
+        address: 272
+        input_type: holding
+        count: 1
+        data_type: int16
+        unit_of_measurement: "°C"
+        device_class: temperature
+        state_class: measurement
+        scan_interval: 60
+        scale: 0.1
+        precision: 2
+        
+      - name: Alpha ESS INV Temperature 
+        unique_id: PV_INV_Temperature
+        slave: !secret alphaess_modbus_slaveId
+        address: 1065
+        input_type: holding
+        count: 1
+        data_type: int16
+        unit_of_measurement: "°C"
+        device_class: temperature
+        state_class: measurement
+        scan_interval: 60
+        scale: 0.1
+        precision: 2
+
+      - name: Alpha ESS Battery remaining time
+        unique_id: PV_Battery_remaining_time
+        slave: !secret alphaess_modbus_slaveId
+        address: 295
+        input_type: holding
+        count: 1
+        data_type: int16
+        unit_of_measurement: minutes
+        state_class: measurement
+        scan_interval: 60
+        scale: 1
+        precision: 2
+        
+      - name: Alpha ESS PV1 Voltage 
+        unique_id: PV_PV1 Voltage
+        slave: !secret alphaess_modbus_slaveId
+        address: 1053
+        input_type: holding
+        count: 1
+        data_type: int16
+        unit_of_measurement: "V"
+        device_class: voltage
+        state_class: measurement
+        scan_interval: 60
+        scale: 0.1
+        precision: 2
+        
+      - name: Alpha ESS PV2 Voltage 
+        unique_id: PV_PV2 Voltage
+        slave: !secret alphaess_modbus_slaveId
+        address: 1057
+        input_type: holding
+        count: 1
+        data_type: int16
+        unit_of_measurement: "V"
+        device_class: voltage
+        state_class: measurement
+        scan_interval: 60
+        scale: 0.1
         precision: 2
         
       #Measurements current power
