@@ -11,6 +11,22 @@ modbus:
 
     #definition of sensors
     sensors:
+    
+      #Measurements other
+      - name: Alpha ESS Grid Frequency
+        unique_id: PV_Grid_Frequency
+        slave: !secret alphaess_modbus_slaveId
+        address: 1052
+        input_type: holding
+        count: 2
+        data_type: int32
+        unit_of_measurement: "Hz"
+        #device_class: power
+        state_class: measurement
+        scan_interval: 10
+        scale: 1
+        precision: 2
+        
       #Measurements current power
       # Power to/from GRID
       - name: Alpha ESS Total Power Grid
