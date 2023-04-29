@@ -19,12 +19,12 @@ modbus:
         address: 1052
         input_type: holding
         count: 2
-        data_type: int32
+        data_type: int16
         unit_of_measurement: "Hz"
         #device_class: power
         state_class: measurement
         scan_interval: 10
-        scale: 1
+        scale: 0.01
         precision: 2
         
       #Measurements current power
