@@ -24,22 +24,8 @@ modbus:
         state_class: measurement
         scan_interval: 30
         scale: 0.01
-        precision: 2
+        precision: 2                         
 
-      - name: Alpha ESS Max cell temperature
-        unique_id: PV_Max_cell_temperature
-        slave: !secret alphaess_modbus_slaveId
-        address: 272
-        input_type: holding
-        count: 1
-        data_type: int16
-        unit_of_measurement: "°C"
-        device_class: temperature
-        state_class: measurement
-        scan_interval: 60
-        scale: 0.1
-        precision: 2
-        
       - name: Alpha ESS INV Temperature 
         unique_id: PV_INV_Temperature
         slave: !secret alphaess_modbus_slaveId
@@ -52,90 +38,7 @@ modbus:
         state_class: measurement
         scan_interval: 60
         scale: 0.1
-        precision: 2
-
-      - name: Alpha ESS Battery remaining time
-        unique_id: PV_Battery_remaining_time
-        slave: !secret alphaess_modbus_slaveId
-        address: 295
-        input_type: holding
-        count: 1
-        data_type: int16
-        unit_of_measurement: minutes
-        state_class: measurement
-        scan_interval: 60
-        scale: 1
-        precision: 2
-        
-      - name: Alpha ESS PV1 Voltage 
-        unique_id: PV_PV1_Voltage
-        slave: !secret alphaess_modbus_slaveId
-        address: 1053
-        input_type: holding
-        count: 1
-        data_type: int16
-        unit_of_measurement: "V"
-        device_class: voltage
-        state_class: measurement
-        scan_interval: 60
-        scale: 0.1
-        precision: 2
-        
-      - name: Alpha ESS PV2 Voltage 
-        unique_id: PV_PV2_Voltage
-        slave: !secret alphaess_modbus_slaveId
-        address: 1057
-        input_type: holding
-        count: 1
-        data_type: int16
-        unit_of_measurement: "V"
-        device_class: voltage
-        state_class: measurement
-        scan_interval: 60
-        scale: 0.1
-        precision: 2
-        
-      - name: Alpha ESS Battery Voltage 
-        unique_id: Battery_Voltage
-        slave: !secret alphaess_modbus_slaveId
-        address: 256
-        input_type: holding
-        count: 1
-        data_type: int16
-        unit_of_measurement: "V"
-        device_class: voltage
-        state_class: measurement
-        scan_interval: 60
-        scale: 0.1
-        precision: 2
-        
-      - name: Alpha ESS PV1 Current 
-        unique_id: PV_PV1_Current
-        slave: !secret alphaess_modbus_slaveId
-        address: 1054
-        input_type: holding
-        count: 1
-        data_type: int16
-        unit_of_measurement: "A"
-        device_class: current
-        state_class: measurement
-        scan_interval: 60
-        scale: 0.1
-        precision: 2
-        
-      - name: Alpha ESS PV2 Current 
-        unique_id: PV_PV2_Current
-        slave: !secret alphaess_modbus_slaveId
-        address: 1058
-        input_type: holding
-        count: 1
-        data_type: int16
-        unit_of_measurement: "A"
-        device_class: current
-        state_class: measurement
-        scan_interval: 60
-        scale: 0.1
-        precision: 2
+        precision: 2      
         
       #Measurements current power
       # Power to/from GRID
@@ -182,6 +85,7 @@ modbus:
         scan_interval: 10
         scale: 1
         precision: 2
+
       # Power of String 1 (connector PV1 on the inverter)
       - name: Alpha ESS Total Power String 1
         unique_id: alpha_ess_total_power_string_1
@@ -195,7 +99,36 @@ modbus:
         state_class: measurement
         scan_interval: 5
         scale: 1
+        precision: 2        
+        
+      - name: Alpha ESS PV1 Voltage 
+        unique_id: PV_PV1_Voltage
+        slave: !secret alphaess_modbus_slaveId
+        address: 1053
+        input_type: holding
+        count: 1
+        data_type: int16
+        unit_of_measurement: "V"
+        device_class: voltage
+        state_class: measurement
+        scan_interval: 60
+        scale: 0.1
         precision: 2
+
+      - name: Alpha ESS PV1 Current 
+        unique_id: PV_PV1_Current
+        slave: !secret alphaess_modbus_slaveId
+        address: 1054
+        input_type: holding
+        count: 1
+        data_type: int16
+        unit_of_measurement: "A"
+        device_class: current
+        state_class: measurement
+        scan_interval: 60
+        scale: 0.1
+        precision: 2
+        
       # Power of String 2 (connector PV3 on the inverter)
       - name: Alpha ESS Total Power String 2
         unique_id: alpha_ess_total_power_string_2
@@ -209,7 +142,36 @@ modbus:
         state_class: measurement
         scan_interval: 5
         scale: 1
+        precision: 2        
+        
+      - name: Alpha ESS PV2 Voltage 
+        unique_id: PV_PV2_Voltage
+        slave: !secret alphaess_modbus_slaveId
+        address: 1057
+        input_type: holding
+        count: 1
+        data_type: int16
+        unit_of_measurement: "V"
+        device_class: voltage
+        state_class: measurement
+        scan_interval: 60
+        scale: 0.1
         precision: 2
+        
+      - name: Alpha ESS PV2 Current 
+        unique_id: PV_PV2_Current
+        slave: !secret alphaess_modbus_slaveId
+        address: 1058
+        input_type: holding
+        count: 1
+        data_type: int16
+        unit_of_measurement: "A"
+        device_class: current
+        state_class: measurement
+        scan_interval: 60
+        scale: 0.1
+        precision: 2
+
       # Power of String 3 (connector PV2 on the inverter)
       - name: Alpha ESS Total Power String 3
         unique_id: alpha_ess_total_power_string_3
@@ -238,6 +200,7 @@ modbus:
         scan_interval: 5
         scale: 1
         precision: 2
+
 
       #ENERGY MEASUREMENTS STATISTIC
       # Total Energy Feed to Grid
@@ -341,6 +304,86 @@ modbus:
         scan_interval: 10
         scale: 0.1
         precision: 2
+      - name: Alpha ESS Battery Min Cell Temp
+        unique_id: PV_Battery_Min_Cell_Temp
+        slave: !secret alphaess_modbus_slaveId
+        address: 269
+        input_type: holding
+        count: 1
+        data_type: uint16
+        unit_of_measurement: "°C"
+        device_class: temperature
+        state_class: measurement
+        scan_interval: 10
+        scale: 0.1
+        precision: 2
+      - name: Alpha ESS Battery Max Cell Temp
+        unique_id: PV_Battery_Max_Cell_Temp
+        slave: !secret alphaess_modbus_slaveId
+        address: 272
+        input_type: holding
+        count: 1
+        data_type: uint16
+        unit_of_measurement: "°C"
+        device_class: temperature
+        state_class: measurement
+        scan_interval: 10
+        scale: 0.1
+        precision: 2
+      - name: Alpha ESS Battery Max Charge Current
+        unique_id: PV_Battery_Max_Charge_Current
+        slave: !secret alphaess_modbus_slaveId
+        address: 273
+        input_type: holding
+        count: 1
+        data_type: uint16
+        unit_of_measurement: "A"
+        device_class: current
+        state_class: measurement
+        scan_interval: 10
+        scale: 0.1
+        precision: 2
+      - name: Alpha ESS Battery Max Discharge Current
+        unique_id: PV_Battery_Max_Discharge_Current
+        slave: !secret alphaess_modbus_slaveId
+        address: 274
+        input_type: holding
+        count: 1
+        data_type: uint16
+        unit_of_measurement: "A"
+        device_class: current
+        state_class: measurement
+        scan_interval: 10
+        scale: 0.1
+        precision: 2
+        
+      - name: Alpha ESS Battery remaining time
+        unique_id: PV_Battery_remaining_time
+        slave: !secret alphaess_modbus_slaveId
+        address: 295
+        input_type: holding
+        count: 1
+        data_type: int16
+        unit_of_measurement: minutes
+        state_class: measurement
+        scan_interval: 60
+        scale: 1
+        precision: 2
+
+      - name: Alpha ESS Battery Voltage 
+        unique_id: PV_Battery_Voltage
+        slave: !secret alphaess_modbus_slaveId
+        address: 256
+        input_type: holding
+        count: 1
+        data_type: int16
+        unit_of_measurement: "V"
+        device_class: voltage
+        state_class: measurement
+        scan_interval: 60
+        scale: 0.1
+        precision: 2        
+
 
       # PV Settings
       # feedrate into the grid (percentage of the installed PV-Power)
@@ -356,6 +399,31 @@ modbus:
         scan_interval: 60
         scale: 1
         precision: 2
+        
+    #GRID Meter
+    #Rate of gridmeter
+      - name: Alpha ESS Gridmeter CT Rate
+        unique_id: PV_GridMeter_CT_Rate
+        slave: !secret alphaess_modbus_slaveId
+        address: 1
+        input_type: holding
+        count: 1
+        data_type: uint16
+        state_class: measurement
+        scan_interval: 60
+        scale: 1
+        precision: 1
+      - name: Alpha ESS PVMeter CT Rate
+        unique_id: PV_PVMeter_CT_Rate
+        slave: !secret alphaess_modbus_slaveId
+        address: 129
+        input_type: holding
+        count: 1
+        data_type: uint16
+        state_class: measurement
+        scan_interval: 60
+        scale: 1
+        precision: 1
 
 #Helper for setting the MaxFeedToGrid
 input_number:
