@@ -21,7 +21,7 @@ And it is working :)
 :white_check_mark: No additional integrations or AddOns needed
 
 ## Prerequisites
-- Home Assistant v2023.1 or greater
+- Home Assistant v2023.1 or greater (read Release log for details)
 - compatible AlphaESS-System with Modbus-TCP interface --> See instructions of your System
 
 ## Installation
