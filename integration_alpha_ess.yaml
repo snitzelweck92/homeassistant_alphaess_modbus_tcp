@@ -6,7 +6,6 @@ modbus:
     port: !secret alphaess_modbus_host_port
     message_wait_milliseconds: 5 # waittime between 2 messages
     timeout: 10 # timeout in seconds before connection is closed
-    retry_on_empty: true
     delay: 1 # delay in seconds at startup
 
     #definition of sensors
@@ -17,7 +16,6 @@ modbus:
         slave: !secret alphaess_modbus_slaveId
         address: 1052
         input_type: holding
-        count: 1
         data_type: int16
         unit_of_measurement: "Hz"
         device_class: frequency
@@ -31,7 +29,6 @@ modbus:
         slave: !secret alphaess_modbus_slaveId
         address: 1065
         input_type: holding
-        count: 1
         data_type: int16
         unit_of_measurement: "°C"
         device_class: temperature
@@ -47,7 +44,6 @@ modbus:
         slave: !secret alphaess_modbus_slaveId
         address: 33
         input_type: holding
-        count: 2
         data_type: int32
         unit_of_measurement: W
         device_class: power
@@ -62,7 +58,6 @@ modbus:
         slave: !secret alphaess_modbus_slaveId
         address: 294
         input_type: holding
-        count: 1
         data_type: int16
         unit_of_measurement: W
         device_class: power
@@ -77,7 +72,6 @@ modbus:
         slave: !secret alphaess_modbus_slaveId
         address: 1036
         input_type: holding
-        count: 2
         data_type: int32
         unit_of_measurement: W
         device_class: power
@@ -92,7 +86,6 @@ modbus:
         slave: !secret alphaess_modbus_slaveId
         address: 1055
         input_type: holding
-        count: 2
         data_type: uint32
         unit_of_measurement: "W"
         device_class: power
@@ -106,7 +99,6 @@ modbus:
         slave: !secret alphaess_modbus_slaveId
         address: 1053
         input_type: holding
-        count: 1
         data_type: int16
         unit_of_measurement: "V"
         device_class: voltage
@@ -120,7 +112,6 @@ modbus:
         slave: !secret alphaess_modbus_slaveId
         address: 1054
         input_type: holding
-        count: 1
         data_type: int16
         unit_of_measurement: "A"
         device_class: current
@@ -135,7 +126,6 @@ modbus:
         slave: !secret alphaess_modbus_slaveId
         address: 1059
         input_type: holding
-        count: 2
         data_type: uint32
         unit_of_measurement: "W"
         device_class: power
@@ -149,7 +139,6 @@ modbus:
         slave: !secret alphaess_modbus_slaveId
         address: 1057
         input_type: holding
-        count: 1
         data_type: int16
         unit_of_measurement: "V"
         device_class: voltage
@@ -163,7 +152,6 @@ modbus:
         slave: !secret alphaess_modbus_slaveId
         address: 1058
         input_type: holding
-        count: 1
         data_type: int16
         unit_of_measurement: "A"
         device_class: current
@@ -178,7 +166,6 @@ modbus:
         slave: !secret alphaess_modbus_slaveId
         address: 1063
         input_type: holding
-        count: 2
         data_type: uint32
         unit_of_measurement: "W"
         device_class: power
@@ -192,7 +179,6 @@ modbus:
         slave: !secret alphaess_modbus_slaveId
         address: 1067
         input_type: holding
-        count: 2
         data_type: uint32
         unit_of_measurement: "W"
         device_class: power
@@ -209,7 +195,6 @@ modbus:
         slave: !secret alphaess_modbus_slaveId
         address: 16
         input_type: holding
-        count: 2
         data_type: uint32
         unit_of_measurement: kWh
         device_class: energy
@@ -224,7 +209,6 @@ modbus:
         slave: !secret alphaess_modbus_slaveId
         address: 18
         input_type: holding
-        count: 2
         data_type: uint32
         unit_of_measurement: kWh
         device_class: energy
@@ -238,7 +222,6 @@ modbus:
         slave: !secret alphaess_modbus_slaveId
         address: 288
         input_type: holding
-        count: 2
         data_type: uint32
         unit_of_measurement: kWh
         device_class: energy
@@ -252,7 +235,6 @@ modbus:
         slave: !secret alphaess_modbus_slaveId
         address: 290
         input_type: holding
-        count: 2
         data_type: uint32
         unit_of_measurement: kWh
         device_class: energy
@@ -266,7 +248,6 @@ modbus:
         slave: !secret alphaess_modbus_slaveId
         address: 292
         input_type: holding
-        count: 2
         data_type: uint32
         unit_of_measurement: kWh
         device_class: energy
@@ -280,7 +261,6 @@ modbus:
         slave: !secret alphaess_modbus_slaveId
         address: 1086
         input_type: holding
-        count: 2
         data_type: uint32
         unit_of_measurement: kWh
         device_class: energy
@@ -296,7 +276,6 @@ modbus:
         slave: !secret alphaess_modbus_slaveId
         address: 258
         input_type: holding
-        count: 1
         data_type: int16
         unit_of_measurement: "%"
         device_class: battery
@@ -309,7 +288,6 @@ modbus:
         slave: !secret alphaess_modbus_slaveId
         address: 269
         input_type: holding
-        count: 1
         data_type: uint16
         unit_of_measurement: "°C"
         device_class: temperature
@@ -322,7 +300,6 @@ modbus:
         slave: !secret alphaess_modbus_slaveId
         address: 272
         input_type: holding
-        count: 1
         data_type: uint16
         unit_of_measurement: "°C"
         device_class: temperature
@@ -335,7 +312,6 @@ modbus:
         slave: !secret alphaess_modbus_slaveId
         address: 273
         input_type: holding
-        count: 1
         data_type: uint16
         unit_of_measurement: "A"
         device_class: current
@@ -348,7 +324,6 @@ modbus:
         slave: !secret alphaess_modbus_slaveId
         address: 274
         input_type: holding
-        count: 1
         data_type: uint16
         unit_of_measurement: "A"
         device_class: current
@@ -362,7 +337,6 @@ modbus:
         slave: !secret alphaess_modbus_slaveId
         address: 295
         input_type: holding
-        count: 1
         data_type: int16
         unit_of_measurement: minutes
         state_class: measurement
@@ -375,7 +349,6 @@ modbus:
         slave: !secret alphaess_modbus_slaveId
         address: 256
         input_type: holding
-        count: 1
         data_type: int16
         unit_of_measurement: "V"
         device_class: voltage
@@ -392,7 +365,6 @@ modbus:
         slave: !secret alphaess_modbus_slaveId
         address: 2048
         input_type: holding
-        count: 1
         data_type: uint16
         unit_of_measurement: "%"
         state_class: measurement
@@ -407,7 +379,6 @@ modbus:
         slave: !secret alphaess_modbus_slaveId
         address: 1
         input_type: holding
-        count: 1
         data_type: uint16
         state_class: measurement
         scan_interval: 60
@@ -418,7 +389,6 @@ modbus:
         slave: !secret alphaess_modbus_slaveId
         address: 129
         input_type: holding
-        count: 1
         data_type: uint16
         state_class: measurement
         scan_interval: 60
