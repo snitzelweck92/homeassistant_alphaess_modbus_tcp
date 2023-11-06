@@ -435,3 +435,7 @@ template:
       - name: alpha_ess_actual_production
         unit_of_measurement: "W"
         state: "{{ (states('sensor.alpha_ess_total_power_string_1') | int + states('sensor.alpha_ess_total_power_string_2') | int + states('sensor.alpha_ess_total_power_string_3') | int + states('sensor.alpha_ess_total_power_string_4') | int) |int }}"
+     #Total consumption of the house
+      - name: alpha_ess_actual_house_consumption
+        unit_of_measurement: "W"
+        state: "{{ (states('sensor.pv_totalpower_inverter')|float + states('sensor.pv_totalpower_grid')|float ) }}"
