@@ -27,7 +27,7 @@ modbus:
       - name: Alpha ESS INV Temperature 
         unique_id: PV_INV_Temperature
         slave: !secret alphaess_modbus_slaveId
-        address: 1065
+        address: 1077
         input_type: holding
         data_type: int16
         unit_of_measurement: "°C"
