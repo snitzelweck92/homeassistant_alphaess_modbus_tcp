@@ -10,34 +10,9 @@ modbus:
 
     #definition of sensors
     sensors:
-      #Measurements other
-      - name: Alpha ESS Grid Frequency
-        unique_id: PV_Grid_Frequency
-        slave: !secret alphaess_modbus_slaveId
-        address: 1052
-        input_type: holding
-        data_type: int16
-        unit_of_measurement: "Hz"
-        device_class: frequency
-        state_class: measurement
-        scan_interval: 30
-        scale: 0.01
-        precision: 2                         
-
-      - name: Alpha ESS INV Temperature 
-        unique_id: PV_INV_Temperature
-        slave: !secret alphaess_modbus_slaveId
-        address: 1077
-        input_type: holding
-        data_type: int16
-        unit_of_measurement: "°C"
-        device_class: temperature
-        state_class: measurement
-        scan_interval: 60
-        scale: 0.1
-        precision: 2      
-        
-      #Measurements current power
+############################################
+########## GRIDMETER MEASUREMENTS ##########
+############################################
       # Power to/from GRID
       - name: Alpha ESS Total Power Grid
         unique_id: PV_TotalPower_Grid
@@ -51,21 +26,66 @@ modbus:
         scan_interval: 10
         scale: 1
         precision: 2
-
-      # Power to/from Battery
-      - name: Alpha ESS Total Power Battery
-        unique_id: PV_TotalPower_Battery
+        
+###########################################
+########## PV-METER MEASUREMENTS ##########
+###########################################
+      # Power Total
+      - name: Alpha ESS Total Power PVMeter
+        unique_id: alpha_ess_power_pvmeter_total
         slave: !secret alphaess_modbus_slaveId
-        address: 294
+        address: 161
         input_type: holding
-        data_type: int16
+        data_type: int32
         unit_of_measurement: W
         device_class: power
         state_class: measurement
         scan_interval: 10
         scale: 1
         precision: 2
-
+      # Power L1
+      - name: Alpha ESS Power PVMeter L1
+        unique_id: alpha_ess_power_pvmeter_l1
+        slave: !secret alphaess_modbus_slaveId
+        address: 161
+        input_type: holding
+        data_type: int32
+        unit_of_measurement: W
+        device_class: power
+        state_class: measurement
+        scan_interval: 10
+        scale: 1
+        precision: 2
+      # Power L2
+      - name: Alpha ESS Power PVMeter L2
+        unique_id: alpha_ess_power_pvmeter_l2
+        slave: !secret alphaess_modbus_slaveId
+        address: 161
+        input_type: holding
+        data_type: int32
+        unit_of_measurement: W
+        device_class: power
+        state_class: measurement
+        scan_interval: 10
+        scale: 1
+        precision: 2
+      # Power L3
+      - name: Alpha ESS Power PVMeter L3
+        unique_id: alpha_ess_power_pvmeter_l3
+        slave: !secret alphaess_modbus_slaveId
+        address: 161
+        input_type: holding
+        data_type: int32
+        unit_of_measurement: W
+        device_class: power
+        state_class: measurement
+        scan_interval: 10
+        scale: 1
+        precision: 2
+      
+###########################################
+########## INVERTER MEASUREMENTS ##########
+###########################################
       # Power Inverter
       - name: Alpha ESS Total Power Inverter
         unique_id: PV_TotalPower_Inverter
@@ -79,7 +99,159 @@ modbus:
         scan_interval: 10
         scale: 1
         precision: 2
+        
+      # Power Inverter - L1
+      - name: Alpha ESS Total Power Inverter L1
+        unique_id: alpha_ess_power_inverter_L1
+        slave: !secret alphaess_modbus_slaveId
+        address: 1030
+        input_type: holding
+        data_type: int32
+        unit_of_measurement: W
+        device_class: power
+        state_class: measurement
+        scan_interval: 10
+        scale: 1
+        precision: 2
 
+      # Power Inverter - L2
+      - name: Alpha ESS Total Power Inverter L2
+        unique_id: alpha_ess_power_inverter_L2
+        slave: !secret alphaess_modbus_slaveId
+        address: 1032
+        input_type: holding
+        data_type: int32
+        unit_of_measurement: W
+        device_class: power
+        state_class: measurement
+        scan_interval: 10
+        scale: 1
+        precision: 2
+
+      # Power Inverter - L3
+      - name: Alpha ESS Total Power Inverter L3
+        unique_id: alpha_ess_power_inverter_L3
+        slave: !secret alphaess_modbus_slaveId
+        address: 1034
+        input_type: holding
+        data_type: int32
+        unit_of_measurement: W
+        device_class: power
+        state_class: measurement
+        scan_interval: 10
+        scale: 1
+        precision: 2
+      
+      #mode of inverter
+      #available modes
+      # 0: Wait 		1: Online
+      # 2: UPS (Grid n. avai)	3: Bypass
+      # 4: Fault		5: DC
+      # 6: Check		7: SelfTest
+      # 8: Update Master	9: Update Slave
+      #10: Update ARM
+      - name: Alpha ESS Inverter Mode
+        unique_id: PV_Inverter_Mode
+        slave: !secret alphaess_modbus_slaveId
+        address: 1088
+        input_type: holding
+        data_type: int16
+        unit_of_measurement: ""
+        device_class: battery
+        state_class: measurement
+        scan_interval: 10
+        scale: 1
+        precision: 2
+      # Temperature of Inverter
+      - name: Alpha ESS INV Temperature 
+        unique_id: PV_INV_Temperature
+        slave: !secret alphaess_modbus_slaveId
+        address: 1077
+        input_type: holding
+        data_type: int16
+        unit_of_measurement: "°C"
+        device_class: temperature
+        state_class: measurement
+        scan_interval: 60
+        scale: 0.1
+        precision: 2
+      #Inverter Frequency
+      - name: Alpha ESS Grid Frequency
+        unique_id: PV_Grid_Frequency
+        slave: !secret alphaess_modbus_slaveId
+        address: 1052
+        input_type: holding
+        data_type: int16
+        unit_of_measurement: "Hz"
+        device_class: frequency
+        state_class: measurement
+        scan_interval: 30
+        scale: 0.01
+        precision: 2  
+        
+        
+################################################
+########## INVERTER IN CASE OF BACKUP ##########
+################################################      
+      # Power Inverter Backup
+      - name: Alpha ESS Total Power Inverter Backup
+        unique_id: alpha_ess_power_inverterbackup_total
+        slave: !secret alphaess_modbus_slaveId
+        address: 1050
+        input_type: holding
+        data_type: uint32
+        unit_of_measurement: W
+        device_class: power
+        state_class: measurement
+        scan_interval: 10
+        scale: 1
+        precision: 2
+        
+      # Power Inverter Backup - L1
+      - name: Alpha ESS Total Power Inverter Backup L1
+        unique_id: alpha_ess_power_inverterbackup_L1
+        slave: !secret alphaess_modbus_slaveId
+        address: 1044
+        input_type: holding
+        data_type: uint32
+        unit_of_measurement: W
+        device_class: power
+        state_class: measurement
+        scan_interval: 10
+        scale: 1
+        precision: 2
+
+      # Power Inverter Backup - L2
+      - name: Alpha ESS Total Power Inverter Backup L2
+        unique_id: alpha_ess_power_inverterbackup_L2
+        slave: !secret alphaess_modbus_slaveId
+        address: 1046
+        input_type: holding
+        data_type: uint32
+        unit_of_measurement: W
+        device_class: power
+        state_class: measurement
+        scan_interval: 10
+        scale: 1
+        precision: 2
+
+      # Power Inverter Backup - L3
+      - name: Alpha ESS Total Power Inverter Backup L3
+        unique_id: alpha_ess_power_inverterbackup_L3
+        slave: !secret alphaess_modbus_slaveId
+        address: 1048
+        input_type: holding
+        data_type: uint32
+        unit_of_measurement: W
+        device_class: power
+        state_class: measurement
+        scan_interval: 10
+        scale: 1
+        precision: 2
+
+###################################################
+########## DC MEASUREMENT FROM PV PANELS ##########
+###################################################  
       # Power of String 1 (connector PV1 on the inverter)
       - name: Alpha ESS Total Power String 1
         unique_id: alpha_ess_total_power_string_1
@@ -186,10 +358,12 @@ modbus:
         scan_interval: 5
         scale: 1
         precision: 2
+        
 
-
-      #ENERGY MEASUREMENTS STATISTIC
-      # Total Energy Feed to Grid
+########################################
+########## ENERGY STATISTICS  ##########
+########################################   
+      # Total Energy Feed to Grid (Gridmeter)
       - name: Alpha ESS Total Energy Feed to Grid
         unique_id: PV_TotalEnergyFeed_Grid
         slave: !secret alphaess_modbus_slaveId
@@ -203,7 +377,7 @@ modbus:
         scale: 0.01
         precision: 2
 
-      # Total Energy Consume from Grid
+      # Total Energy Consume from Grid (Gridmeter)
       - name: Alpha ESS Total Energy Consumption from Grid
         unique_id: PV_TotalEnergyConsume_Grid
         slave: !secret alphaess_modbus_slaveId
@@ -216,7 +390,36 @@ modbus:
         scan_interval: 60
         scale: 0.01
         precision: 2
-      # Total Energy Charge Batteryy
+        
+      # Total Energy Feed to Grid (PVMeter)
+      - name: Alpha ESS Total Energy Feed to Grid (PVMeter)
+        unique_id: alpha_ess_total_energy_feed_to_grid_pvmeter
+        slave: !secret alphaess_modbus_slaveId
+        address: 144
+        input_type: holding
+        data_type: uint32
+        unit_of_measurement: kWh
+        device_class: energy
+        state_class: total_increasing
+        scan_interval: 60
+        scale: 0.01
+        precision: 2
+
+      # Total Energy Consume from Grid (PVmeter)
+      - name: Alpha ESS Total Energy Consumption from Grid (PVMeter)
+        unique_id: alpha_ess_total_energy_consumption_from_grid_pvmeter
+        slave: !secret alphaess_modbus_slaveId
+        address: 146
+        input_type: holding
+        data_type: uint32
+        unit_of_measurement: kWh
+        device_class: energy
+        state_class: total_increasing
+        scan_interval: 60
+        scale: 0.01
+        precision: 2
+        
+      # Total Energy Charge Battery
       - name: Alpha ESS Total Energy Charge Battery
         unique_id: PV_TotalEnergyCharge_Battery
         slave: !secret alphaess_modbus_slaveId
@@ -269,7 +472,9 @@ modbus:
         scale: 0.1
         precision: 2
 
-      # BATTERY
+##########################################
+########## BATTERY MEASUREMENTS ##########
+##########################################
       #SOC
       - name: Alpha ESS SOC Battery
         unique_id: PV_SOC_Battery
@@ -283,6 +488,7 @@ modbus:
         scan_interval: 10
         scale: 0.1
         precision: 2
+      #MIN Cell Temp
       - name: Alpha ESS Battery Min Cell Temp
         unique_id: PV_Battery_Min_Cell_Temp
         slave: !secret alphaess_modbus_slaveId
@@ -295,6 +501,7 @@ modbus:
         scan_interval: 10
         scale: 0.1
         precision: 2
+      #Max Cell Temp
       - name: Alpha ESS Battery Max Cell Temp
         unique_id: PV_Battery_Max_Cell_Temp
         slave: !secret alphaess_modbus_slaveId
@@ -307,6 +514,7 @@ modbus:
         scan_interval: 10
         scale: 0.1
         precision: 2
+      # Max Charge Current
       - name: Alpha ESS Battery Max Charge Current
         unique_id: PV_Battery_Max_Charge_Current
         slave: !secret alphaess_modbus_slaveId
@@ -319,6 +527,7 @@ modbus:
         scan_interval: 10
         scale: 0.1
         precision: 2
+      # Max Discharge Current
       - name: Alpha ESS Battery Max Discharge Current
         unique_id: PV_Battery_Max_Discharge_Current
         slave: !secret alphaess_modbus_slaveId
@@ -331,7 +540,6 @@ modbus:
         scan_interval: 10
         scale: 0.1
         precision: 2
-        
       - name: Alpha ESS Battery remaining time
         unique_id: PV_Battery_remaining_time
         slave: !secret alphaess_modbus_slaveId
@@ -343,7 +551,7 @@ modbus:
         scan_interval: 60
         scale: 1
         precision: 2
-
+      # Battery DC Voltage 
       - name: Alpha ESS Battery Voltage 
         unique_id: PV_Battery_Voltage
         slave: !secret alphaess_modbus_slaveId
@@ -355,7 +563,53 @@ modbus:
         state_class: measurement
         scan_interval: 60
         scale: 0.1
-        precision: 2        
+        precision: 2   
+      # Power to/from Battery
+      - name: Alpha ESS Total Power Battery
+        unique_id: PV_TotalPower_Battery
+        slave: !secret alphaess_modbus_slaveId
+        address: 294
+        input_type: holding
+        data_type: int16
+        unit_of_measurement: W
+        device_class: power
+        state_class: measurement
+        scan_interval: 10
+        scale: 1
+        precision: 2
+        
+      #status battery relay for detecting backup-mode
+      # Different Modes
+      # 0: Charge discharge relays are disconnected
+      # 1: Only discharge relay is closed
+      # 2: Only charge relay is closed
+      # 3: Charge and discharge relays are closed
+      - name: Alpha ESS Battery Relay Status
+        unique_id: PV_Battery_Relay_Status
+        slave: !secret alphaess_modbus_slaveId
+        address: 260
+        input_type: holding
+        data_type: int16
+        unit_of_measurement: ""
+        device_class: battery
+        state_class: measurement
+        scan_interval: 10
+        scale: 1
+        precision: 1
+        
+      #UPS SOC Reserve
+      - name: Alpha ESS UPS SOC Battery
+        unique_id: alpha_ess_battery_ups_soc
+        slave: !secret alphaess_modbus_slaveId
+        address: 2128
+        input_type: holding
+        data_type: int16
+        unit_of_measurement: "%"
+        device_class: battery
+        state_class: measurement
+        scan_interval: 60
+        scale: 1
+        precision: 2
 
 
       # PV Settings
@@ -371,9 +625,11 @@ modbus:
         scan_interval: 60
         scale: 1
         precision: 2
-        
-    #GRID Meter
-    #Rate of gridmeter
+              
+########################################
+########## OTHER MEASUREMENTS ##########
+########################################
+      #Rate of gridmeter
       - name: Alpha ESS Gridmeter CT Rate
         unique_id: PV_GridMeter_CT_Rate
         slave: !secret alphaess_modbus_slaveId
@@ -384,6 +640,7 @@ modbus:
         scan_interval: 60
         scale: 1
         precision: 1
+      #Rate of PVMeter
       - name: Alpha ESS PVMeter CT Rate
         unique_id: PV_PVMeter_CT_Rate
         slave: !secret alphaess_modbus_slaveId
@@ -395,11 +652,15 @@ modbus:
         scale: 1
         precision: 1
 
-#Helper for setting target SoC
+
+#############################
+########## HELPERS ##########
+#############################
 input_number:
+#Helper for setting target SoC
   alpha_ess_helper_target_soc_value:
-    name: "Setting Target SoC"
-    min: 0
+    name: "Setting minimum SOC Battery "
+    min: 4
     max: 100
     icon: mdi:cloud_percent
     unit_of_measurement: "%"
@@ -415,7 +676,11 @@ input_number:
     unit_of_measurement: "%"
     mode: slider
     step: 1.0
-#Automations
+    
+    
+#################################
+########## AUTOMATIONS ##########
+#################################
 automation:
   - id: "Alpha_ESS_Setting_FeedToGrid"
     alias: PV_Set_FeedToGrid_Value
@@ -450,18 +715,20 @@ automation:
           value: "{{ (states('input_number.alpha_ess_helper_target_soc_value') | int)}}"
     mode: single
 
-#Sensor templates
+######################################
+########## SENSOR TEMPLATES ##########
+######################################
 template:
   - sensor:
       #Total consumption of the home
       - name: alpha_ess_totalenergyconsume_home
         unit_of_measurement: "kWh"
-        state: "{{ states('sensor.pv_totalenergyfrompv_pv') |float + states('sensor.pv_totalenergyconsume_grid') | float - states('sensor.pv_totalenergyfeed_grid') | float }}"
+        state: "{{ states('sensor.alpha_ess_total_energy_from_pv') |float + states('sensor.alpha_ess_total_energy_consumption_from_grid') | float - states('sensor.alpha_ess_total_energy_feed_to_grid') | float }}"
       #Total current production
       - name: alpha_ess_actual_production
         unit_of_measurement: "W"
         state: "{{ (states('sensor.alpha_ess_total_power_string_1') | int + states('sensor.alpha_ess_total_power_string_2') | int + states('sensor.alpha_ess_total_power_string_3') | int + states('sensor.alpha_ess_total_power_string_4') | int) |int }}"
-     #Total consumption of the house
+      #Total consumption of the house
       - name: alpha_ess_actual_house_consumption
         unit_of_measurement: "W"
-        state: "{{ (states('sensor.pv_totalpower_inverter')|float + states('sensor.pv_totalpower_grid')|float ) }}"
+        state: "{{ (states('sensor.alpha_ess_total_power_inverter')|float + states('sensor.alpha_ess_total_power_grid')|float ) }}"
