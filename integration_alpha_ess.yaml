@@ -696,7 +696,7 @@ automation:
           hub: modbuspvsystem
           address: 2048
           slave: 85
-          value: "{{ (states('input_number.alpha_ess_helper_feedtogrid_value') | int)}}"
+          value: "{{ (states('input_number.alpha_ess_helper_feedtogrid_value') | int(0))}}"
     mode: single
   - id: "Alpha_ESS_Setting_TargetSoC"
     alias: PV_Set_TargetSoC_Value
@@ -712,7 +712,7 @@ automation:
           hub: modbuspvsystem
           address: 2128
           slave: 85
-          value: "{{ (states('input_number.alpha_ess_helper_target_soc_value') | int)}}"
+          value: "{{ (states('input_number.alpha_ess_helper_target_soc_value') | int(0))}}"
     mode: single
 
 ######################################
@@ -723,12 +723,12 @@ template:
       #Total consumption of the home
       - name: alpha_ess_totalenergyconsume_home
         unit_of_measurement: "kWh"
-        state: "{{ states('sensor.alpha_ess_total_energy_from_pv') |float + states('sensor.alpha_ess_total_energy_consumption_from_grid') | float - states('sensor.alpha_ess_total_energy_feed_to_grid') | float }}"
+        state: "{{ states('sensor.alpha_ess_total_energy_from_pv') |float(0) + states('sensor.alpha_ess_total_energy_consumption_from_grid') | float(0) - states('sensor.alpha_ess_total_energy_feed_to_grid') | float(0) }}"
       #Total current production
       - name: alpha_ess_actual_production
         unit_of_measurement: "W"
-        state: "{{ (states('sensor.alpha_ess_total_power_string_1') | int + states('sensor.alpha_ess_total_power_string_2') | int + states('sensor.alpha_ess_total_power_string_3') | int + states('sensor.alpha_ess_total_power_string_4') | int) |int }}"
+        state: "{{ (states('sensor.alpha_ess_total_power_string_1') | int(0) + states('sensor.alpha_ess_total_power_string_2') | int(0) + states('sensor.alpha_ess_total_power_string_3') | int(0) + states('sensor.alpha_ess_total_power_string_4') | int(0)) |int(0) }}"
       #Total consumption of the house
       - name: alpha_ess_actual_house_consumption
         unit_of_measurement: "W"
-        state: "{{ (states('sensor.alpha_ess_total_power_inverter')|float + states('sensor.alpha_ess_total_power_grid')|float ) }}"
+        state: "{{ (states('sensor.alpha_ess_total_power_inverter')|float(0) + states('sensor.alpha_ess_total_power_grid')|float(0) ) }}"
