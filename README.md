@@ -16,6 +16,7 @@ And it is working :)
 :white_check_mark: Connection to the Inverter via Modbus TCP\
 :white_check_mark: Setup of sensor entities inside of Home Assistant \
 :white_check_mark: Setup of a automation and the helpers for setting the "Max Feed to Grid - Rate" (How many energy is given to the grid)\
+:white_check_mark: Setup of a automation and the helpers for setting the "Target SOC of Battery"\
 :white_check_mark: Setup of template-sensor to provide the values to the energy dashboard\
 :white_check_mark: Open for modifications, no integration or other complicated stuff. Simply YAML-file!\
 :white_check_mark: No additional integrations or AddOns needed
