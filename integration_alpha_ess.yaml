@@ -141,7 +141,46 @@ modbus:
         scan_interval: 10
         scale: 1
         precision: 2
-      
+      # Inverter Voltage L1
+      - name: Alpha ESS Inverter Voltage L1
+        unique_id: alpha_ess_inverter_voltage_l1
+        slave: !secret alphaess_modbus_slaveId
+        address: 1024
+        input_type: holding
+        data_type: uint16
+        unit_of_measurement: "V"
+        device_class: voltage
+        state_class: measurement
+        scan_interval: 10
+        scale: 0.1
+        precision: 1
+      # Inverter Voltage L2
+      - name: Alpha ESS Inverter Voltage L2
+        unique_id: alpha_ess_inverter_voltage_l2
+        slave: !secret alphaess_modbus_slaveId
+        address: 1025
+        input_type: holding
+        data_type: uint16
+        unit_of_measurement: "V"
+        device_class: voltage
+        state_class: measurement
+        scan_interval: 10
+        scale: 0.1
+        precision: 1
+      # Inverter Voltage L3
+      - name: Alpha ESS Inverter Voltage L3
+        unique_id: alpha_ess_inverter_voltage_l3
+        slave: !secret alphaess_modbus_slaveId
+        address: 1026
+        input_type: holding
+        data_type: uint16
+        unit_of_measurement: "V"
+        device_class: voltage
+        state_class: measurement
+        scan_interval: 10
+        scale: 0.1
+        precision: 1
+        
       #mode of inverter
       #available modes
       # 0: Wait 		1: Online
@@ -188,6 +227,110 @@ modbus:
         scan_interval: 30
         scale: 0.01
         precision: 2  
+        
+      # Inverter Fault 1
+      - name: Alpha ESS Inverter Fault 1
+        unique_id: alpha_ess_inverter_fault_1
+        slave: !secret alphaess_modbus_slaveId
+        address: 1082
+        input_type: holding
+        data_type: uint32
+        unit_of_measurement: ""
+        state_class: measurement
+        scan_interval: 10
+        scale: 1
+        precision: 1
+      # Inverter Fault 2
+      - name: Alpha ESS Inverter Fault 2
+        unique_id: alpha_ess_inverter_fault_2
+        slave: !secret alphaess_modbus_slaveId
+        address: 1084
+        input_type: holding
+        data_type: uint32
+        unit_of_measurement: ""
+        state_class: measurement
+        scan_interval: 10
+        scale: 1
+        precision: 2
+    
+      # Inverter Extended Fault 1
+      - name: Alpha ESS Inverter Extended Fault 1
+        unique_id: alpha_ess_inverter_extended_fault_1
+        slave: !secret alphaess_modbus_slaveId
+        address: 1099
+        input_type: holding
+        data_type: uint32
+        unit_of_measurement: ""
+        state_class: measurement
+        scan_interval: 10
+        scale: 1
+        precision: 2
+        
+      # Inverter Extended Fault 2
+      - name: Alpha ESS Inverter Extended Fault 2
+        unique_id: alpha_ess_inverter_extended_fault_2
+        slave: !secret alphaess_modbus_slaveId
+        address: 1101
+        input_type: holding
+        data_type: uint32
+        unit_of_measurement: ""
+        state_class: measurement
+        scan_interval: 10
+        scale: 1
+        precision: 2
+        
+      # System Fault
+      - name: Alpha ESS System Fault
+        unique_id: alpha_ess_system_fault
+        slave: !secret alphaess_modbus_slaveId
+        address: 1793
+        input_type: holding
+        data_type: uint32
+        unit_of_measurement: ""
+        state_class: measurement
+        scan_interval: 10
+        scale: 1
+        precision: 2
+        
+################################################
+##########           EMS              ##########
+################################################            
+      # EMS Version High
+      - name: Alpha ESS EMS Version High
+        unique_id: alpha_ess_ems_version_high
+        slave: !secret alphaess_modbus_slaveId
+        address: 1833
+        input_type: holding
+        data_type: uint16
+        unit_of_measurement: ""
+        state_class: measurement
+        scan_interval: 10
+        scale: 1
+        precision: 0
+      # EMS Version Middle
+      - name: Alpha ESS EMS Version Middle
+        unique_id: alpha_ess_ems_version_middle
+        slave: !secret alphaess_modbus_slaveId
+        address: 1834
+        input_type: holding
+        data_type: uint16
+        unit_of_measurement: ""
+        state_class: measurement
+        scan_interval: 10
+        scale: 1
+        precision: 0
+      # EMS Version Low
+      - name: Alpha ESS EMS Version Low
+        unique_id: alpha_ess_ems_version_low
+        slave: !secret alphaess_modbus_slaveId
+        address: 1835
+        input_type: holding
+        data_type: uint16
+        unit_of_measurement: ""
+        state_class: measurement
+        scan_interval: 10
+        scale: 1
+        precision: 0
         
         
 ################################################
@@ -651,7 +794,48 @@ modbus:
         scan_interval: 60
         scale: 1
         precision: 1
-
+########################################
+##########     GRID METER     ##########
+########################################
+      # Grid Voltage A
+      - name: Alpha ESS Grid Voltage Phase A
+        unique_id: alpha_ess_gridmeter_voltage_a
+        slave: !secret alphaess_modbus_slaveId
+        address: 20
+        input_type: holding
+        data_type: uint16
+        unit_of_measurement: "V"
+        device_class: voltage
+        state_class: measurement
+        scan_interval: 10
+        scale: 1
+        precision: 1
+      # Grid Voltage B
+      - name: Alpha ESS Grid Voltage Phase B
+        unique_id: alpha_ess_gridmeter_voltage_b
+        slave: !secret alphaess_modbus_slaveId
+        address: 21
+        input_type: holding
+        data_type: uint16
+        unit_of_measurement: "V"
+        device_class: voltage
+        state_class: measurement
+        scan_interval: 10
+        scale: 1
+        precision: 1
+      # Grid Voltage C
+      - name: Alpha ESS Grid Voltage Phase C
+        unique_id: alpha_ess_gridmeter_voltage_c
+        slave: !secret alphaess_modbus_slaveId
+        address: 22
+        input_type: holding
+        data_type: uint16
+        unit_of_measurement: "V"
+        device_class: voltage
+        state_class: measurement
+        scan_interval: 10
+        scale: 1
+        precision: 1
 
 #############################
 ########## HELPERS ##########
